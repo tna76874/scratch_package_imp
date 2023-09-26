@@ -4,3 +4,4 @@ markdown: kramdown
 
 exclude:
   - docker-compose.yml
+  - README.md
