@@ -1,12 +1,17 @@
 ---
 layout: default
-title: Startseite
+title: Scratch IMP Kontaktstudium 2023/2024
 ---
 
-# Scratch Aufgaben
+# Scratch IMP Kontaktstudium 2023/2024
 
-{% for page in site.pages %}
-  {% if page.path contains 'package/' and page.path ends_with '.html' %}
-    - [{{ page.name }}]({{ page.url }})
+{% for file in site.static_files %}
+  {% if file.path contains 'packages/' and file.extname == '.html' %}
+    {% assign file_parts = file.name | split: '_' %}
+    {% if file_parts.size == 2 %}
+        {% assign index = file_parts[1] | remove: '.html' | plus: 0 %}
+        {% assign filename_without_extension = file.name | remove: '.html' %}
+[{{ filename_without_extension }}](packages/{{ file.name }})
+    {% endif %}
   {% endif %}
 {% endfor %}
